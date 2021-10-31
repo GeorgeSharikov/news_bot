@@ -5,13 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon bot.js"
+    "start": "nodemon src/bot.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cheerio": "*",
+    "image-downloader": "^4.0.3",
     "node-fetch": "^2.6.5",
     "nodemon": "^2.0.14",
     "telegraf": "^4.4.2"

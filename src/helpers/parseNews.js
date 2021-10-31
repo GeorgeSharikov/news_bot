@@ -1,9 +1,6 @@
-import fetch from 'node-fetch'
-import * as cheerio from 'cheerio'
+import * as cheerio from "cheerio";
 
-export const getNews = async () => {
-    const res = await fetch('https://yle.fi/uutiset/osasto/selkouutiset/')
-    const html = await res.text()
+export const parseNews = (html) => {
     let $ = cheerio.load(html.toString())
 
     const articles = $('.custom').html()
@@ -16,29 +13,27 @@ export const getNews = async () => {
     const count = $('div.text p').get().length
 
     $ = cheerio.load(sectionTwo)
-    const data = {}
+    const data = {news: {}}
     let tmp
     let counter = 0
     const texts = $('h3').each((i, el) => {
         el = $(el)
         tmp = el.text().trim()
-        data[tmp] = {text: [], img: null}
+        data.news[tmp] = {text: [], img: null}
         el = el.next()
         while(  el && el.prop('tagName') !== 'H3'){
             if(el.prop('tagName') === 'P'){
-                console.log('sss')
                 counter= counter + 1
                 if(Boolean(el.text().trim())){
-                    data[tmp].text.push([el.text().trim()])
+                    data.news[tmp].text.push(el.text())
                 }
             }
             if(el.prop('tagName') === 'FIGURE'){
                 const link = el.find('a')
-                data[tmp].img = link.attr('href')
+                data.news[tmp].img = link.attr('href')
             }
-            console.log(counter === count, counter, count)
-            el = counter === count-1 ? null : $(el.next())
+            el = counter === count ? null : $(el.next())
         }
     })
-    return JSON.stringify(data, null, 4)
+    return data
 }
