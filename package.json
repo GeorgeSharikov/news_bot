@@ -12,9 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "*",
-    "image-downloader": "^4.0.3",
+    "dotenv": "^10.0.0",
     "node-fetch": "^2.6.5",
     "nodemon": "^2.0.14",
+    "pg": "^8.7.1",
+    "sequelize": "^6.8.0",
     "telegraf": "^4.4.2"
   }
 }

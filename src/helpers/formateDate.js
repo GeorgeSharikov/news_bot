@@ -1,8 +1,6 @@
-const daysOfWeek = ["Sunnuntai", "Monantai", "Tiistay", "keskiviikko", "Torstai", "Perjantai", "Lauantai"];
+const daysOfWeek = ["Sunnuntai", "Monantai", "Tiistai", "keskiviikko", "Torstai", "Perjantai", "Lauantai"];
 export const formatDate = (time) => {
-    console.log(time)
-    const ms = Date.parse(time);
-    const date = new Date(ms)
+    const date = new Date(time*1000)
     const arr = [];
     let day = date.getDay();
     day = daysOfWeek[day]

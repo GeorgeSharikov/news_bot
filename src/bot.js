@@ -1,10 +1,15 @@
-import {getMainMenu} from "./keyboard/keyboards.js";
+import env from 'dotenv'; env.config()
 import pkg from 'telegraf';
-import {NewsController} from "./Controllers/newsController.js";
 const {Telegraf, Markup, Extra } = pkg;
+import {NewsController} from "./Controllers/newsController.js";
+import {getMainMenu} from "./keyboard/keyboards.js";
+import {sequalize} from "../db/db.js";
+import {NewsModel} from "../db/models.js";
 
+await sequalize.authenticate()
+await sequalize.sync()
 
-const API = '2060081291:AAEoWdvRxr9yqFjN6XRHEvGebO3aERITdu0'
+const API = process.env.API_KEY
 
 const bot = new Telegraf(API)
 bot.start((ctx) => ctx.reply('Welcome!!! \nHere you can get some news in easy finnish', getMainMenu()))
