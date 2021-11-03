@@ -1,6 +1,6 @@
 import env from 'dotenv'; env.config()
 import pkg from 'telegraf';
-const {Telegraf, Markup, Extra } = pkg;
+const {Telegraf } = pkg;
 import {NewsController} from "./Controllers/newsController.js";
 import {getMainMenu} from "./keyboard/keyboards.js";
 import {sequalize} from "../db/db.js";
