@@ -23,6 +23,7 @@ const API = process.env.API_KEY
 const bot = new Telegraf(API)
 bot.start((ctx) => ctx.reply('Welcome!!! \nHere you can get some news in easy finnish', getMainMenu()))
 bot.hears('Get News', (ctx) => NewsController.getTodayNews(ctx))
+bot.hears('Get Previous News', (ctx) => NewsController.getPreviousNews(ctx))
 bot.launch()
 
 

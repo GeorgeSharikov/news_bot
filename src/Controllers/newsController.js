@@ -1,4 +1,6 @@
 import {News} from "../api/newsApi.js";
+import {NewsModel} from "../../db/models.js";
+import {getPreviousNewsInlineMenu} from "../keyboard/keyboards.js";
 
 class NewsControllerClass {
     getTodayNews = async (ctx) => {
@@ -11,7 +13,6 @@ class NewsControllerClass {
                 let url = !news[key].img && key === 'Sää'
                     ? 'https://gorod-novoross.ru/news_foto/full/l2y_45k7e0mgdpix3oa19nwqz6rbf-.jpg' //Weather image
                     : news[key].img || 'https://image.flaticon.com/icons/png/512/179/179452.png'
-                console.log(url)
                 const str = news[key].text.join('\n\n\t')
                 try {
                     await ctx.replyWithPhoto(url, {disable_notification: true})
@@ -25,6 +26,10 @@ class NewsControllerClass {
             console.log(e)
             await ctx.reply('Ooops, something went wrong')
         }
+    }
+    getPreviousNews = async (ctx) => {
+        const news = await News.getLastSevenNews()
+        ctx.reply('Please, choose news',getPreviousNewsInlineMenu(news))
     }
 }
 
