@@ -6,6 +6,7 @@ class NewsControllerClass {
     getTodayNews = async (ctx) => {
         try{
             const {news, date} = await News.getTodayNewsApi()
+            console.log(news, date)
             const keys = Object.keys(news)
             await ctx.replyWithHTML(`<b><strong>${date}</strong></b>`)
             for(let i = 0; i<keys.length; i++) {

@@ -7,6 +7,7 @@ const url = process.env.DATABASE_UR || "postgres://upqbvbddnugjyw:bb4c78cafc056a
 export const sequalize = new Sequelize(url,{
         dialect: 'postgres',
         protocol: 'postgres',
+        logging: false,
         dialectOptions: {
             ssl: {
                 require: true,

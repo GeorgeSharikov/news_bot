@@ -18,8 +18,8 @@ app.listen(port, () => console.log('listen'))
 await sequalize.authenticate()
 await sequalize.sync()
 //bot
-// const API = process.env.API_KEY
-const API = "2012349836:AAETnqGdXg0aNqv0ai1Yh7ywrBjzbDRHJjs"
+const API = process.env.API_KEY
+// const API = "2012349836:AAETnqGdXg0aNqv0ai1Yh7ywrBjzbDRHJjs"
 
 const bot = new Telegraf(API)
 bot.start((ctx) => ctx.reply('Welcome!!! \nHere you can get some news in easy finnish', getMainMenu()))

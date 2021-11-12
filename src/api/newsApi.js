@@ -16,6 +16,7 @@ class NewsApi {
                 return {date, news: newsText}
             }
             const newsData = parseNews(html)
+            console.log(newsData)
             newsData.date = formattedDate
             return await NewsModel.create(newsData)
         }catch (e) {
