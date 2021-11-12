@@ -7,6 +7,7 @@ import {sequalize} from "../db/db.js";
 import {NewsModel} from "../db/models.js";
 import express from 'express'
 import fetch from 'node-fetch';
+import { News } from './api/newsApi.js';
 
 //server
 const port = process.env.PORT || 3000
@@ -34,3 +35,10 @@ bot.launch()
 setInterval(async () => {
     fetch('https://finnish-news-bot.herokuapp.com/')
 }, 60*30)
+
+setInterval(() => { 
+    const date = new Date(); 
+    if(date.getHours() > 20 && date.getHours() < 21){ 
+        News.getTodayNewsApi()
+    }
+}, 1000*60*30)
