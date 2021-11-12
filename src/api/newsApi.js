@@ -11,6 +11,7 @@ class NewsApi {
             const html = await res.text()
             const formattedDate = parseDate(html)
             const news = await NewsModel.findOne({where: {date: formattedDate}})
+            console.log(news)
             if(news) {
                 const {date, news: newsText} = news
                 return {date, news: newsText}
@@ -27,6 +28,10 @@ class NewsApi {
     getLastSevenNews = async () => {
         const news = await NewsModel.findAll()
         return news.slice(news.length > 7 ? news.length - 7 : 0)
+    }
+    getPreviousOne = async (date) => {
+        const OneNews = await NewsModel.findOne({where: {date}})
+        return OneNews
     }
 }
 
