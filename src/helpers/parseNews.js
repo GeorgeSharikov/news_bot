@@ -2,16 +2,16 @@ import * as cheerio from "cheerio";
 
 export const parseNews = (html) => {
     let $ = cheerio.load(html.toString())
-    console.log('1')
+
     const articles = $('.custom').html()
     $ = cheerio.load(articles)
-    console.log('2')
+
     const section = $('section').eq(1).html()
     $ = cheerio.load(section)
-    console.log('3')
+
     const sectionTwo = $('.text').html()
     const count = $('div.text p').get().length
-    console.log('4')
+
     $ = cheerio.load(sectionTwo)
     const data = {news: {}}
     let tmp
@@ -22,7 +22,7 @@ export const parseNews = (html) => {
         data.news[tmp] = {text: [], img: null}
         el = el.next()
         while(el && el.prop('tagName') !== 'H3'){
-            console.log(el.prop('tagName'))
+
             if(el.prop('tagName') === 'P'){
                 counter= counter + 1
                 if(Boolean(el.text().trim())){

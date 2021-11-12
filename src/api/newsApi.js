@@ -11,13 +11,11 @@ class NewsApi {
             const html = await res.text()
             const formattedDate = parseDate(html)
             const news = await NewsModel.findOne({where: {date: formattedDate}})
-            console.log(news)
             if(news) {
                 const {date, news: newsText} = news
                 return {date, news: newsText}
             }
             const newsData = parseNews(html)
-            console.log(newsData)
             newsData.date = formattedDate
             return await NewsModel.create(newsData)
         }catch (e) {
