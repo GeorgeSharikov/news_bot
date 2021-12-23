@@ -32,9 +32,9 @@ bot.action(/new_/g, ctx =>{
 })
 bot.launch()
 
-setInterval(async () => {
-    fetch('https://finnish-news-bot.herokuapp.com/')
-}, 60*30)
+// setInterval(async () => {
+//     fetch('https://finnish-news-bot.herokuapp.com/')
+// }, 60*30)
 
 setInterval(() => { 
     const date = new Date(); 
