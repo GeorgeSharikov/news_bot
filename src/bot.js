@@ -38,7 +38,7 @@ bot.launch()
 
 setInterval(() => { 
     const date = new Date(); 
-    if(date.getHours() > 20 && date.getHours() < 21){ 
+    if(date.getHours() >= 20 && date.getHours() <= 21){ 
         News.getTodayNewsApi()
     }
 }, 1000*60*30)
